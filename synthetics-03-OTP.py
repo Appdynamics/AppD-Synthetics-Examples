@@ -1,3 +1,7 @@
+# AppDynamics Synthetics Example 03 - Generate Timebase One Time Password (TOTP)
+#
+# Maintainer David Ryder
+#
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -7,7 +11,9 @@ from selenium.webdriver.chrome.options import Options
 import codecs
 import datetime, time
 
-# Ref https://tools.ietf.org/html/rfc6238
+# Ref TOTP - https://tools.ietf.org/html/rfc6238
+# Ref HOPT - https://tools.ietf.org/html/rfc4226
+
 
 # Use this this secret
 accountSecret = "AAAAAAAAAAAAAAAAAAAAAAAA"
@@ -28,6 +34,7 @@ try:
     import hmac, base64, struct, hashlib, time
 
     def getHOTPtoken(secret, intervalsNo):
+        TOTP: Time-Based One-Time Password Algorithm
         h = hmac.new(base64.b32decode(secret, True),
                         struct.pack(">Q", intervalsNo),
                         hashlib.sha1).digest()
@@ -35,6 +42,7 @@ try:
         return (struct.unpack(">I", h[o:o+4])[0] & 0x7fffffff) % 1000000
 
     def getTOTPtoken(secret):
+        # HOTP: An HMAC-Based One-Time Password Algorithm
         return getHOTPtoken(secret, intervalsNo=int(time.time())//30)
 
     token = getTOTPtoken(accountSecret)
