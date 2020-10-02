@@ -34,7 +34,7 @@ try:
     import hmac, base64, struct, hashlib, time
 
     def getHOTPtoken(secret, intervalsNo):
-        TOTP: Time-Based One-Time Password Algorithm
+        # TOTP: Time-Based One-Time Password Algorithm
         h = hmac.new(base64.b32decode(secret, True),
                         struct.pack(">Q", intervalsNo),
                         hashlib.sha1).digest()
