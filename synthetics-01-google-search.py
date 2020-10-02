@@ -1,5 +1,7 @@
 # AppDynamics Synthetics Example 1 - Search Google
 #
+# Maintainer David Ryder
+#
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -31,7 +33,7 @@ id = WebDriverWait(driver, waitTimeout).until(EC.presence_of_element_located((By
 
 # Clear the search box, Enter search text and press enter
 id.clear()
-id.send_keys("ServiceNow")
+id.send_keys("AppDynamics")
 id.send_keys( Keys.ENTER )
 
 # Wait for and validate the results stats are visible
