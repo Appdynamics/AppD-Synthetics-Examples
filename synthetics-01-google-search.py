@@ -25,6 +25,13 @@ driver.implicitly_wait(15)
 waitTimeout = 30
 startTime = datetime.datetime.now()
 
+# Use Synthetics Credential Vault
+searchStr = "<%GOOGLE_SEARCH_STR_1%>"
+if searchStr.startswith("<"):
+    print( "Credential Vault Key: {} missing".format(searchStr) )
+    searchStr = "AppDynamics"
+print( "Credential Vault Search Str: {}".format(searchStr))
+
 # Navigate to the base url: https://www.google.com
 driver.get("https://www.google.com")
 
@@ -33,7 +40,7 @@ id = WebDriverWait(driver, waitTimeout).until(EC.presence_of_element_located((By
 
 # Clear the search box, Enter search text and press enter
 id.clear()
-id.send_keys("AppDynamics")
+id.send_keys(searchStr)
 id.send_keys( Keys.ENTER )
 
 # Wait for and validate the results stats are visible

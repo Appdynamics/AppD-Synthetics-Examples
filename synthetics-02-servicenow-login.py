@@ -29,6 +29,9 @@ startTime = datetime.datetime.now()
 userNameStr = "first.last@example.com"
 userPasswordStr = "Required1"
 
+# Use Synthetics Credential Vault
+print( "Credential Vault User: {} Pwd: {}".format("<%SURF_PWD_1%>", "<%SURF_USER_1%>"))
+
 # Navigate to the base url: "http://signon.service-now.com/ssologin.do/"
 driver.get("http://signon.service-now.com/ssologin.do/")
 
